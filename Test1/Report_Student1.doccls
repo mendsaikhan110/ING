@@ -1,0 +1,9 @@
+Option Compare Database
+
+Private Sub Detail_Format(Cancel As Integer, FormatCount As Integer)
+Me.Line (2 * 1440, 0)-(2 * 1440, 10000)
+Me.Line (3 * 1440, 0)-(3 * 1440, 10000)
+Me.Line (4.5 * 1440, 0)-(4.5 * 1440, 10000)
+Me.Line (0.25 * 1440, 0)-(7 * 1440, 0)
+
+End Sub

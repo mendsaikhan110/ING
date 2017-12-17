@@ -1,0 +1,82 @@
+Option Compare Database
+
+Private Sub cmdallfemale_Click()
+DoCmd.OpenReport "qFilterbysex", acViewPreview
+End Sub
+
+Private Sub cmdbyid_Click()
+DoCmd.OpenReport "Rptfilterbyid", acViewPreview
+End Sub
+
+Private Sub cmdclose_Click()
+DoCmd.Close
+
+End Sub
+
+Private Sub cmdfilterbyid_Click()
+DoCmd.OpenReport "Student1", acViewPreview, , "[StuID]=" & StuID.Value
+End Sub
+
+Private Sub cmdprintall_Click()
+DoCmd.OpenReport "Student", acViewPreview
+End Sub
+
+Private Sub cmdsave_Click()
+DoCmd.RunSQL "INSERT INTO Student Values('" & StuID.Value & "','" & StuName.Value & "','" & _
+StuSex.Value & "','" & StuDOB.Value & "','" & StuPOB.Value & "','" & _
+StuPhone.Value & "','" & Stuphoto.Value & "')"
+End Sub
+
+Private Sub cmdview_Click()
+If cmdview.Caption = "View All Students" Then
+lstview.ColumnCount = 6
+lstview.ColumnHeads = True
+lstview.RowSourceType = "Table/Query"
+lstview.RowSource = "Select * From Student"
+cmdview.Caption = "Hide all info"
+Else
+lstview.RowSource = ""
+cmdview.Caption = "View All Students"
+End If
+
+End Sub
+
+Private Sub Command12_Click()
+DoCmd.RunSQL "UPDATE Student SET StuName='" & StuName.Value & "',StuSex='" & StuSex.Value & "'" & "WHERE StuID=" & StuID.Value
+End Sub
+
+Private Sub Command13_Click()
+DoCmd.RunSQL "DELETE FROM Student WHERE StuID=" & StuID.Value
+End Sub
+
+Private Sub Command20_Click()
+DoCmd.OpenReport "RptStudent", acViewPreview
+
+End Sub
+
+Private Sub Command23_Click()
+DoCmd.OpenReport "RptStudent", acViewPreview, , "[StuID]=" & StuID.Value
+End Sub
+
+Private Sub Form_Load()
+Stuphoto.Visible = False
+
+End Sub
+
+Private Sub Form_Timer()
+
+End Sub
+
+Private Sub StuID_BeforeUpdate(Cancel As Integer)
+
+End Sub
+
+Private Sub StuID_GotFocus()
+On Error GoTo aa
+
+If Stuphoto.Value <> "" Then
+imgphoto.Picture = Stuphoto.Value
+End If
+
+aa: Exit Sub
+End Sub

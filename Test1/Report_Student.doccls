@@ -1,0 +1,9 @@
+Option Compare Database
+
+Private Sub Detail_Format(Cancel As Integer, FormatCount As Integer)
+Me.Line (1 * 1440, 0)-(1 * 1440, 10000)
+End Sub
+
+Private Sub Report_Open(Cancel As Integer)
+
+End Sub

@@ -1,0 +1,34 @@
+Option Compare Database
+Option Explicit
+Private Sub Form_Load()
+'display tables
+Dim x As TableDef
+Lsttables.RowSourceType = "Value List"
+For Each x In CurrentDb.TableDefs
+Lsttables.AddItem x.Name
+Next
+'display queries
+Dim q As QueryDef
+lstqueries.RowSourceType = "Value List"
+For Each q In CurrentDb.QueryDefs
+lstqueries.AddItem (q.Name)
+Next
+'display forms
+Dim f As AccessObject
+lstforms.RowSourceType = "Value List"
+For Each f In CurrentProject.AllForms
+lstforms.AddItem (f.Name)
+Next
+
+'display reports
+Dim r As AccessObject
+lstreports.RowSourceType = "Value List"
+For Each r In CurrentProject.AllReports
+lstreports.AddItem (r.Name)
+Next
+
+End Sub
+
+Private Sub Lsttables_BeforeUpdate(Cancel As Integer)
+
+End Sub
